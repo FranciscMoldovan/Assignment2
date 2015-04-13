@@ -14,8 +14,8 @@ public class Controller {
 	      new ActionListener() {
 	        public void actionPerformed(ActionEvent evt) 
 	        { 
-	        	@SuppressWarnings("unused")
-				String infoText=frame.getMyInfoText();
+				String infoText=frame.getMyUsernameText();
+	        	String infoPassword=frame.getMyPasswordText();
 	        }
 	      }
 	    );

@@ -14,8 +14,9 @@ public class TheFrame extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	private JButton button;// = new JButton("My Button");
-	  private JTextField myinfo;// = new JTextField();
-	 
+	  private JTextField usernameField;
+	  private JTextField passwordField;
+	  
 	  public TheFrame(String title) {
 		  super(title);
 		  setSize( 500, 500 );	  
@@ -26,13 +27,21 @@ public class TheFrame extends JFrame{
 		  button.setBounds(100, 100, 150, 40);
 		  add(button);
 		
-		  myinfo = new JTextField();
-		  myinfo.setBounds(100, 150, 150, 40);
-		  add(myinfo);
+		  usernameField = new JTextField("user");
+		  usernameField.setBounds(100, 150, 150, 40);
+		  add(usernameField);
+		  
+		  passwordField = new JTextField("pass");
+		  passwordField.setBounds(100, 200, 150, 40);
+		  add(passwordField);
 	 }
 	  
-	public String getMyInfoText(){
-		return myinfo.getText();
+	public String getMyUsernameText(){
+		return usernameField.getText();
+	}
+	
+	public String getMyPasswordText(){
+		return passwordField.getText();
 	}
 	
 	public void addButtonActionListener(ActionListener listener) {
