@@ -21,7 +21,7 @@
 		<title>TEST_TITLE</title>
 		<author>TEST_AUTHOR</author>
 		<genre>TEST_AUTHOR</genre>
-		<quantity>TEST_QUANTITY</quantity>
+		<quantity>5</quantity>
 		<price>25.5</price>
 	</book>
 	<book>
@@ -29,7 +29,7 @@
 		<title>TEST_TITLE</title>
 		<author>TEST_AUTHOR</author>
 		<genre>TEST_AUTHOR</genre>
-		<quantity>TEST_QUANTITY</quantity>
+		<quantity>6</quantity>
 		<price>25.5</price>
 	</book>
 		<book>

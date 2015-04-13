@@ -30,7 +30,7 @@ public class BookDOM {
 				book.appendChild(genre);
 				//Create quantity tag
 				Element quantity=d.createElement("quantity"); 
-				quantity.appendChild(d.createTextNode("TEST_QUANTITY"));
+				quantity.appendChild(d.createTextNode("99999"));
 				book.appendChild(quantity);
 				//Create price tag
 				Element price=d.createElement("price"); 
@@ -82,22 +82,27 @@ public class BookDOM {
 	}
 	}
 
-	public ArrayList<String> getAllBooks(){
-		ArrayList<String> allBooks = new ArrayList<String>();
+	public ArrayList<Book> getAllBooks(){
+		ArrayList<Book> allBooks = new ArrayList<Book>();
 		
 		try{
 			Document d = DOMHelper.getDocument("src\\models\\books.xml");
 			NodeList n1=d.getElementsByTagName("book"); 
 			for (int i = 0; i < n1.getLength(); i++) {
 				Element ebook=(Element) n1.item(i);
-				
+					String ISBN   = String.valueOf(ebook.getElementsByTagName("ISBN").item(0).getTextContent());
 					String title = String.valueOf(ebook.getElementsByTagName("title").item(0).getTextContent());
-					allBooks.add(title);	
+					String author= String.valueOf(ebook.getElementsByTagName("author").item(0).getTextContent());
+					String genre =String.valueOf(ebook.getElementsByTagName("genre").item(0).getTextContent());
+					int quantity=Integer.valueOf(ebook.getElementsByTagName("quantity").item(0).getTextContent());
+					double price=Double.valueOf(ebook.getElementsByTagName("price").item(0).getTextContent());
+				Book aBook = new Book(ISBN,title,author,genre,quantity,price);
+				allBooks.add(aBook);
 			}
 		}catch (Exception e){
 			System.out.println(e.getMessage());
 	}
-		System.out.println(allBooks);
+		System.out.println(allBooks.toString());
 		return allBooks;
 	}
 	
