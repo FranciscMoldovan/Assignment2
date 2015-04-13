@@ -10,6 +10,10 @@ public class BookDOM {
 				Element books=d.getDocumentElement();
 				//Create book tag
 				Element book=d.createElement("book"); 
+				//Create ISBN tag
+				Element ISBN=d.createElement("ISBN");
+				ISBN.appendChild(d.createTextNode("4444444444"));
+				book.appendChild(ISBN);
 				//Create title tag
 				Element title=d.createElement("title"); 
 				title.appendChild(d.createTextNode("TEST_TITLE"));
@@ -36,4 +40,65 @@ public class BookDOM {
 			System.out.println(e.getMessage());
 		}
 		}
+
+	public void removeBook(String ISBN){
+		try{
+				Document d = DOMHelper.getDocument("src\\models\\books.xml");
+				NodeList n1=d.getElementsByTagName("book"); 
+				for (int i = 0; i < n1.getLength(); i++) {
+					Element ebook=(Element) n1.item(i);
+					if(ebook.getElementsByTagName("ISBN").item(0).getTextContent().equals(ISBN)){
+						ebook.getParentNode().removeChild(ebook);
+					}
+				}
+				//Write to file
+				DOMHelper.saveXMLContent(d, "src\\models\\books.xml");
+			}catch (Exception e){
+				System.out.println(e.getMessage());
+		}
+		}
+	
+	public void updateBook(String ISBN, String title, String author, String genre, int quantity, double price){
+		try{
+			Document d = DOMHelper.getDocument("src\\models\\books.xml");
+			NodeList n1=d.getElementsByTagName("book"); 
+			for (int i = 0; i < n1.getLength(); i++) {
+				Element ebook=(Element) n1.item(i);
+				if(ebook.getElementsByTagName("ISBN").item(0).getTextContent().equals(ISBN)){
+					ebook.getElementsByTagName("title").item(0).setTextContent(title);
+					ebook.getElementsByTagName("author").item(0).setTextContent(author);
+					ebook.getElementsByTagName("genre").item(0).setTextContent(genre);
+					 
+					ebook.getElementsByTagName("quantity").item(0).setTextContent(String.valueOf(quantity));	
+					ebook.getElementsByTagName("price").item(0).setTextContent(String.valueOf(price));		 
+				}
+			}
+			//Write to file
+			DOMHelper.saveXMLContent(d, "src\\models\\books.xml");
+		}catch (Exception e){
+			System.out.println(e.getMessage());
+	}
+	}
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
