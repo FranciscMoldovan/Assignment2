@@ -32,5 +32,13 @@
 		<quantity>TEST_QUANTITY</quantity>
 		<price>25.5</price>
 	</book>
+		<book>
+		<ISBN>4444444444</ISBN>
+		<title>x</title>
+		<author>xx</author>
+		<genre>xxx</genre>
+		<quantity>20</quantity>
+		<price>22.55</price>
+	</book>
 	
 </books>
