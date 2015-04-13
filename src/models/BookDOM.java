@@ -1,5 +1,7 @@
 package models;
 
+import java.util.ArrayList;
+
 import org.w3c.dom.*;
 
 
@@ -80,6 +82,25 @@ public class BookDOM {
 	}
 	}
 
+	public ArrayList<String> getAllBooks(){
+		ArrayList<String> allBooks = new ArrayList<String>();
+		
+		try{
+			Document d = DOMHelper.getDocument("src\\models\\books.xml");
+			NodeList n1=d.getElementsByTagName("book"); 
+			for (int i = 0; i < n1.getLength(); i++) {
+				Element ebook=(Element) n1.item(i);
+				
+					String title = String.valueOf(ebook.getElementsByTagName("title").item(0).getTextContent());
+					allBooks.add(title);	
+			}
+		}catch (Exception e){
+			System.out.println(e.getMessage());
+	}
+		System.out.println(allBooks);
+		return allBooks;
+	}
+	
 
 }
 
