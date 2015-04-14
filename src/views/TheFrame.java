@@ -13,7 +13,7 @@ public class TheFrame extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private JButton button;// = new JButton("My Button");
+	  private JButton button;// = new JButton("My Button");
 	  private JTextField usernameField;
 	  private JTextField passwordField;
 	  
@@ -44,6 +44,10 @@ public class TheFrame extends JFrame{
 		return passwordField.getText();
 	}
 	
+	public JButton getButton() {
+		return button;
+	}
+
 	public void addButtonActionListener(ActionListener listener) {
 	    button.addActionListener(listener);
 	  }
