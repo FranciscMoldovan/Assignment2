@@ -4,8 +4,15 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+
+
+
 
 
 import models.Book;
@@ -53,7 +60,40 @@ public class Controller {
 					public void actionPerformed(ActionEvent evt) {
 						if (evt.getSource()==employeeWindow.getBtnAddNewBook())
 						{
-							System.out.println("ADD_BTN");
+							
+							   JTextField fieldISBN = new JTextField();
+							   JTextField fieldTitle = new JTextField();
+							   JTextField fieldAuthor = new JTextField();
+							   JTextField fieldGenre= new JTextField();
+							   JTextField fieldQuantity = new JTextField();
+							   JTextField fieldPrice = new JTextField();
+							   
+							  
+							 Object[] message = { "new Book ISBN:", fieldISBN, "new Book Title:", fieldTitle, "new Book Author:", fieldAuthor,
+									 			"new Book Genre:", fieldGenre, "new Book Quantity:", fieldQuantity, "new Book Price", fieldPrice};
+
+								Object[] options = { "ADD!", "Cancel" };
+								int n = JOptionPane.showOptionDialog(new JFrame(), message,"Add New Book", JOptionPane.YES_NO_OPTION,
+										JOptionPane.QUESTION_MESSAGE, null, options,options[1]);
+								if (n == JOptionPane.OK_OPTION) 
+								{ 
+									if (fieldISBN.getText().trim().length()>0 && fieldTitle.getText().trim().length()>0 && fieldAuthor.getText().trim().length()>0 &&
+											fieldGenre.getText().trim().length()>0 && fieldQuantity.getText().trim().length()>0 && fieldPrice.getText().trim().length()>0){
+										
+											
+										   String newISBN = fieldISBN.getText();
+										   String newTitle = fieldTitle.getText();
+										   String newAuthor = fieldAuthor.getText();
+										   String newGenre = fieldGenre.getText();
+										   int newQuantity = Integer.valueOf(fieldQuantity.getText());
+										   double newPrice = Double.valueOf(fieldPrice.getText());
+										   
+										
+										BookDOM bd = new BookDOM();
+										Book newBook = new Book(newISBN,newTitle,newAuthor,newGenre,newQuantity,newPrice);
+										bd.addBook(newBook);
+									}
+								}
 						}
 						
 						if (evt.getSource()==employeeWindow.getBtnUpdateBook())
