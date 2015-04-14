@@ -1,5 +1,7 @@
 package models;
 
+import java.util.ArrayList;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -84,4 +86,44 @@ public class UserDOM {
 	}
 	}
 	
+	
+	public ArrayList<User> getAllUsers(){
+		ArrayList<User> allUsers= new ArrayList<User>();
+		
+		try{
+			Document d = DOMHelper.getDocument("src\\models\\users.xml");
+			NodeList n1=d.getElementsByTagName("user"); 
+			for (int i = 0; i < n1.getLength(); i++) {
+				Element ebook=(Element) n1.item(i);
+					String SSN   = String.valueOf(ebook.getElementsByTagName("SSN").item(0).getTextContent());
+					String name = String.valueOf(ebook.getElementsByTagName("name").item(0).getTextContent());
+					String username= String.valueOf(ebook.getElementsByTagName("username").item(0).getTextContent());
+					String password =String.valueOf(ebook.getElementsByTagName("password").item(0).getTextContent());
+					String role=String.valueOf(ebook.getElementsByTagName("role").item(0).getTextContent());
+					
+					User aUser= new User(SSN,name,username,password,role);
+				allUsers.add(aUser);
+			}
+		}catch (Exception e){
+			System.out.println(e.getMessage());
+	}
+		System.out.println(allUsers.toString());
+		return allUsers;
+	}
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

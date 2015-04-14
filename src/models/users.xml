@@ -6,9 +6,25 @@
 	
 	<user>
 		<SSN>1939999999</SSN>
-		<name>x</name>
+		<name>Ion</name>
 		<username>xx</username>
 		<password>xxx</password>
 		<role>boss</role>
+	</user>
+	
+	<user>
+		<SSN>1939999999</SSN>
+		<name>Vasile</name>
+		<username>xx</username>
+		<password>xxx</password>
+		<role>clopotar</role>
+	</user>
+	
+	<user>
+		<SSN>1939999999</SSN>
+		<name>Dumitru</name>
+		<username>xx</username>
+		<password>xxx</password>
+		<role>DJ</role>
 	</user>
 </users>
