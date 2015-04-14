@@ -1,16 +1,9 @@
 package controller;
 
-import java.awt.BorderLayout;
-import java.awt.ScrollPane;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Scanner;
-
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -28,6 +21,7 @@ public class Controller {
 
 	  public Controller() {
 	  
+		///Action Listener for LogIn Panel///////////////////////////
 	    logInWindow.addButtonActionListener(
 	      new ActionListener() {
 	        public void actionPerformed(ActionEvent evt) 
@@ -44,12 +38,36 @@ public class Controller {
 		        		employeeWindow.setTitle("DRACU!");
 		        		
 		        		fillMyTable();
-		        		
+		        	
 		        	}
 	        	}
 	        }
 	      }
 	    );
+	    ////////////////////////////////////////////////////////////
+	    
+	    
+	    ///Action Listener for Employee Panel/////////////////////////////////
+	    employeeWindow.addButtonActionListener(
+	    		new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						if (evt.getSource()==employeeWindow.getBtnAddNewBook())
+						{
+							System.out.println("ADD_BTN");
+						}
+						
+						if (evt.getSource()==employeeWindow.getBtnUpdateBook())
+						{
+							System.out.println("UPDATE_BTN");
+						}
+						if (evt.getSource()==employeeWindow.getBtnDeleteBook())
+						{
+							System.out.println("DELETE_BTN");
+						}
+					}
+				});
+	    ////////////////////////////////////////////////////////////////////////
+	    
 	    
 
 	  }
