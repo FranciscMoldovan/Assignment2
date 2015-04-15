@@ -15,8 +15,8 @@
 	<user>
 		<SSN>1939999999</SSN>
 		<name>Dumitru</name>
-		<username>username1</username>
-		<password>password1</password>
+		<username>user</username>
+		<password>pass</password>
 		<role>DJ</role>
 	</user>
 	

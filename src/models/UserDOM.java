@@ -107,7 +107,7 @@ public class UserDOM {
 		}catch (Exception e){
 			System.out.println(e.getMessage());
 	}
-		System.out.println(allUsers.toString());
+		//System.out.println(allUsers.toString());
 		return allUsers;
 	}
 	

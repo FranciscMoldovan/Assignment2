@@ -5,15 +5,15 @@
 		<title>Humans of New York</title>
 		<author>Brandom Stanton</author>
 		<genre>Photography</genre>
-		<quantity>58</quantity>
-		<price>25.50</price>
+		<quantity>0</quantity>
+		<price>25.5</price>
 	</book>
 	<book>
 		<ISBN>0374374562</ISBN>
 		<title>Little Humans</title>
 		<author>Brandom Stanton</author>
 		<genre>Photography</genre>
-		<quantity>32</quantity>
+		<quantity>12</quantity>
 		<price>19.75</price>
 	</book>
 	<book>
@@ -21,8 +21,8 @@
 		<title>New York Through the Lens</title>
 		<author>Vivienne Gucwa </author>
 		<genre>Photography</genre>
-		<quantity>17</quantity>
-		<price>52.50</price>
+		<quantity>50</quantity>
+		<price>52.5</price>
 	</book>
 	
 	
@@ -31,15 +31,15 @@
 		<title>Landmarks</title>
 		<author>Robert Macfarlane </author>
 		<genre>History</genre>
-		<quantity>3</quantity>
-		<price>60.50</price>
+		<quantity>0</quantity>
+		<price>60.5</price>
 	</book>
 	<book>
 		<ISBN>1847922589</ISBN>
 		<title>Introducing the Ancient Greeks</title>
 		<author>Edith Hall </author>
 		<genre>History</genre>
-		<quantity>7</quantity>
+		<quantity>100</quantity>
 		<price>65.5</price>
 	</book>
 	<book>
@@ -47,7 +47,7 @@
 		<title>The Churchill Factor: How One Man Made History</title>
 		<author>Boris Johnson </author>
 		<genre>History</genre>
-		<quantity>4</quantity>
+		<quantity>0</quantity>
 		<price>120.75</price>
 	</book>
 	
@@ -57,7 +57,7 @@
 <title>A Work in Progress</title>
 <author> Connor Franta</author>
 <genre>Humour</genre>
-<quantity>6</quantity>
+<quantity>0</quantity>
 <price>29.95</price>
 </book>
 <book>
@@ -65,7 +65,7 @@
 <title>So You've Been Publicly Shamed</title>
 <author>Jon Ronson</author>
 <genre>Humour</genre>
-<quantity>4</quantity>
+<quantity>2</quantity>
 <price>28.75</price>
 </book>
 <book>
@@ -76,6 +76,7 @@
 <quantity>3</quantity>
 <price>29.5</price>
 </book>
+
 
 
 

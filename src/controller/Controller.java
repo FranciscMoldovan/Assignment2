@@ -21,12 +21,12 @@ import models.Book;
 import models.BookDOM;
 import models.User;
 import models.UserDOM;
-import views.EmployeeGUI;
+import views.ManagerGUI;
 import views.LogInGUI;
 
 public class Controller {
 	  private  LogInGUI logInWindow = new LogInGUI("Log In Panel");
-	  private  EmployeeGUI employeeWindow = new EmployeeGUI(logInWindow,false,"Employee Panel");
+	  private  ManagerGUI managerWindow = new ManagerGUI(logInWindow,false,"Employee Panel");
 
 	  public Controller() {
 	  
@@ -42,8 +42,8 @@ public class Controller {
 	        		
 		        	if (checkLogIn){
 		        		logInWindow.setVisible(false);
-		        		employeeWindow.setVisible(true);
-		        		employeeWindow.setTitle("DRACU!");
+		        		managerWindow.setVisible(true);
+		        		managerWindow.setTitle("MANAGER PANEL!");
 		        		
 		        		fillMyTable();
 		        	
@@ -56,10 +56,10 @@ public class Controller {
 	    
 	    
 	    ///Action Listener for Employee Panel/////////////////////////////////
-	    employeeWindow.addButtonActionListener(
+	    managerWindow.addButtonActionListener(
 	    		new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
-						if (evt.getSource()==employeeWindow.getBtnAddNewBook())
+						if (evt.getSource()==managerWindow.getBtnAddNewBook())
 						{	
 							try{
 							   JTextField fieldISBN = new JTextField();
@@ -94,33 +94,33 @@ public class Controller {
 										bd.addBook(newBook);
 											updateTable();
 											//default title and icon
-											JOptionPane.showMessageDialog(employeeWindow,"Successfully added book:"+newTitle+" by "+newAuthor+"!");
+											JOptionPane.showMessageDialog(managerWindow,"Successfully added book:"+newTitle+" by "+newAuthor+"!");
 									} else{
-										JOptionPane.showMessageDialog(employeeWindow,"ISBN Taken!","ISBN TAKEN!",JOptionPane.ERROR_MESSAGE);
+										JOptionPane.showMessageDialog(managerWindow,"ISBN Taken!","ISBN TAKEN!",JOptionPane.ERROR_MESSAGE);
 									}
 									}
 									else{
 										//custom title, error icon
-										JOptionPane.showMessageDialog(employeeWindow,"Please leave no field empty!","ERROR!",JOptionPane.ERROR_MESSAGE);
+										JOptionPane.showMessageDialog(managerWindow,"Please leave no field empty!","ERROR!",JOptionPane.ERROR_MESSAGE);
 									}
 								}
 							}catch (NumberFormatException e) {
-								JOptionPane.showMessageDialog(employeeWindow,"Please input integer quantity and double price!","PLEASE INPUT NUMERS!",JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(managerWindow,"Please input integer quantity and double price!","PLEASE INPUT NUMERS!",JOptionPane.ERROR_MESSAGE);
 							}
 						}
 						
 						
-						if (evt.getSource()==employeeWindow.getBtnUpdateBook())
+						if (evt.getSource()==managerWindow.getBtnUpdateBook())
 						{
-							if (employeeWindow.getTable().getSelectedRow()!=-1)
+							if (managerWindow.getTable().getSelectedRow()!=-1)
 							{
 							try{
 								  
-								   JTextField fieldTitle = new JTextField((String)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),1));
-								   JTextField fieldAuthor = new JTextField((String)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),2));
-								   JTextField fieldGenre= new JTextField((String)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),3));
-								   JTextField fieldQuantity = new JTextField(String.valueOf(employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),4)));
-								   JTextField fieldPrice = new JTextField(String.valueOf(employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),5)));
+								   JTextField fieldTitle = new JTextField((String)managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),1));
+								   JTextField fieldAuthor = new JTextField((String)managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),2));
+								   JTextField fieldGenre= new JTextField((String)managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),3));
+								   JTextField fieldQuantity = new JTextField(String.valueOf(managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),4)));
+								   JTextField fieldPrice = new JTextField(String.valueOf(managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),5)));
 								   
 								  
 								 Object[] message = {"updated Book Title:", fieldTitle, "updated Book Author:", fieldAuthor,
@@ -142,48 +142,48 @@ public class Controller {
 											   double updPrice = Double.valueOf(fieldPrice.getText());
 										
 														BookDOM bd = new BookDOM();
-															Book newBook = new Book((String)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),0),updTitle,updAuthor,updGenre,updQuantity,updPrice);
-															Book oldBook = new Book((String)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),0),
-																					(String)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),1),
-																					(String)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),2), 
-																					(String)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),3), 
-																					((Integer)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),4)),
-																					((Double)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),5)));
+															Book newBook = new Book((String)managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),0),updTitle,updAuthor,updGenre,updQuantity,updPrice);
+															Book oldBook = new Book((String)managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),0),
+																					(String)managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),1),
+																					(String)managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),2), 
+																					(String)managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),3), 
+																					((Integer)managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),4)),
+																					((Double)managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),5)));
 															bd.updateBook(oldBook, newBook);
 															updateTable();
 															//default title and icon
-															JOptionPane.showMessageDialog(employeeWindow,"Successfully updated book:"+updTitle+" by "+updAuthor+"!");
+															JOptionPane.showMessageDialog(managerWindow,"Successfully updated book:"+updTitle+" by "+updAuthor+"!");
 									
 										}
 									   
 									      else{
 														//custom title, error icon
-														JOptionPane.showMessageDialog(employeeWindow,"Please leave no field empty!","ERROR!",JOptionPane.ERROR_MESSAGE);
+														JOptionPane.showMessageDialog(managerWindow,"Please leave no field empty!","ERROR!",JOptionPane.ERROR_MESSAGE);
 													}
 									}
 									
 								}catch (NumberFormatException e) {
-									JOptionPane.showMessageDialog(employeeWindow,"Please input integer quantity and double price!","PLEASE INPUT NUMERS!",JOptionPane.ERROR_MESSAGE);
+									JOptionPane.showMessageDialog(managerWindow,"Please input integer quantity and double price!","PLEASE INPUT NUMERS!",JOptionPane.ERROR_MESSAGE);
 								}
 							}
 						}
 						
 						
-						if (evt.getSource()==employeeWindow.getBtnDeleteBook())
+						if (evt.getSource()==managerWindow.getBtnDeleteBook())
 						{
 				
-							if(employeeWindow.getTable().getSelectedRow()!=-1){
-								   String toDelISBN = ((String)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),0));
-								   String toDelTitle = ((String)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),1));
-								   String toDelAuthor = ((String)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),2));
-								   String toDelGenre= ((String)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),3));
-								   int toDelQuantity = ((Integer)(employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),4)));
-								   double toDelPrice = ((Double)(employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),5)));
+							if(managerWindow.getTable().getSelectedRow()!=-1){
+								   String toDelISBN = ((String)managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),0));
+								   String toDelTitle = ((String)managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),1));
+								   String toDelAuthor = ((String)managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),2));
+								   String toDelGenre= ((String)managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),3));
+								   int toDelQuantity = ((Integer)(managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),4)));
+								   double toDelPrice = ((Double)(managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),5)));
 								   
 								   Book aBook = new Book(toDelISBN, toDelTitle, toDelAuthor, toDelGenre, toDelQuantity, toDelPrice);
 								   BookDOM bd = new BookDOM();
 								   
-									int n = JOptionPane.showConfirmDialog(employeeWindow,
+									int n = JOptionPane.showConfirmDialog(managerWindow,
 										    "Are you sure you want to remove Book: "+aBook.toString()+" ??",
 										    "Please confirm deletion!",
 										    JOptionPane.YES_NO_OPTION);	
@@ -195,8 +195,69 @@ public class Controller {
 									}
 							}
 						}
+						
+						
+						if (evt.getSource()==managerWindow.getBtnSellBook())
+						{
+							try{
+							if(managerWindow.getTable().getSelectedRow()!=-1){
+								String toSellISBN = ((String)managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),0));
+								   String toSellTitle = ((String)managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),1));
+								   String toSellAuthor = ((String)managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),2));
+								   String toSellGenre= ((String)managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),3));
+								   int toSellQuantity = ((Integer)(managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),4)));
+								   double toSellPrice = ((Double)(managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),5)));
+								   
+								   Book aBook = new Book(toSellISBN, toSellTitle, toSellAuthor, toSellGenre, toSellQuantity, toSellPrice);
+								   
+								     JTextField numerToSell=new JTextField();
+									 Object[] message = {"Number of books to sell:",numerToSell};
+
+								Object[] options = { "SELL!", "Cancel" };
+								int n = JOptionPane.showOptionDialog(new JFrame(), message,"Sell Book", JOptionPane.YES_NO_OPTION,
+										JOptionPane.QUESTION_MESSAGE, null, options,options[1]);
+								if (n == JOptionPane.OK_OPTION)
+								{
+									if(aBook.getQuantity()!=0){
+										int number = Integer.valueOf(numerToSell.getText());
+										BookDOM bd = new BookDOM();
+										if (number<=aBook.getQuantity())
+										{//eough books to sell at once
+											Book newBook = new Book(aBook.getISBN(), aBook.getTitle(), aBook.getAuthor(), 
+													aBook.getGenre(), aBook.getQuantity(), aBook.getPrice());
+											newBook.setQuantity(newBook.getQuantity()-number);
+										    	bd.updateBook(aBook, newBook);
+										    	updateTable();
+										    	JOptionPane.showMessageDialog(managerWindow,"Successfully Sold "+number+" pieces of book: "+aBook.getTitle()+" by "+
+										    	aBook.getAuthor()+" Total SUM: "+number*aBook.getPrice());
+										    	
+										}else
+										{//couldn't sell enough books
+											int actuallySold = aBook.getQuantity();
+											Book newBook = new Book(aBook.getISBN(), aBook.getTitle(), aBook.getAuthor(), 
+													aBook.getGenre(), aBook.getQuantity(), aBook.getPrice());
+											newBook.setQuantity(0);
+										    	bd.updateBook(aBook, newBook);
+										    	updateTable();
+										    	JOptionPane.showMessageDialog(managerWindow,"Only "+actuallySold+" books out of "+number+" sold!! TOTAL SUM:"+aBook.getPrice()*actuallySold,"NOT ENOUGH BOOKS SOLD!",JOptionPane.ERROR_MESSAGE);
+										}
+									}else{
+										JOptionPane.showMessageDialog(managerWindow,"Sorry, book is Completelely OUT OF STOCK!","BOOKS IS OUT OF STOCK!",JOptionPane.ERROR_MESSAGE);
+											}
+								}
+							}
+						}
+							catch(NumberFormatException e){
+								JOptionPane.showMessageDialog(managerWindow,"Please type number, not letters!","INPUT ERROR!",JOptionPane.ERROR_MESSAGE);
+								}
+					}
+//						
+						
 					}
 				});
+	    
+	    
+	    
 	    ////////////////////////////////////////////////////////////////////////
 	    
 	    
@@ -206,12 +267,12 @@ public class Controller {
 		private void  fillMyTable()
 		{
 			//////////////////////////////////////////////////////
-			DefaultTableModel dtm=employeeWindow.getdTableModel();
+			DefaultTableModel dtm=managerWindow.getdTableModel();
 			//////////////////////////////////////////////////////
 			int[] columnsWidth = { 100, 400, 200, 150, 50,80};
 			int ii = 0;
 			for (int width : columnsWidth) {
-				TableColumn column = employeeWindow.getTable().getColumnModel().getColumn(ii++);
+				TableColumn column = managerWindow.getTable().getColumnModel().getColumn(ii++);
 				column.setMinWidth(width);
 				column.setMaxWidth(width);
 				column.setPreferredWidth(width);
@@ -233,20 +294,20 @@ public class Controller {
 					}
 				}
 				///////////////////////////////////
-				employeeWindow.setdTableModel(dtm);
+				managerWindow.setdTableModel(dtm);
 				///////////////////////////////////
 		}
 		
 		
 		private void updateTable()
 		{
-			DefaultTableModel dtm = employeeWindow.getdTableModel();
+			DefaultTableModel dtm = managerWindow.getdTableModel();
 			int c = dtm.getRowCount();
 				for (int i=c-1; i>=0; i--)
 				{
 					dtm.removeRow(i);
 				}
-				employeeWindow.setdTableModel(dtm);
+				managerWindow.setdTableModel(dtm);
 				fillMyTable();
 		}	
 	  
@@ -262,7 +323,6 @@ public class Controller {
 		  			}else logInOK=false;
 		  		}
 		  	}
-		  	System.out.println(logInOK);
 	  return logInOK;
 	  }
 

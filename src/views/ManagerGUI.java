@@ -5,7 +5,6 @@ import java.awt.Font;
 
 
 import java.awt.event.ActionListener;
-
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -13,9 +12,9 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
-import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 
-public class EmployeeGUI extends JDialog{
+public class ManagerGUI extends JDialog{
 
 	/**
 	 * serial Version UID
@@ -28,12 +27,12 @@ public class EmployeeGUI extends JDialog{
 	private JTable table; 
 	private JPanel panel;
 	private JScrollPane scrollPane ; 
-	
+	private JLabel lblInfo;
 	//////BUTTONS////////////////
 	private JButton btnAddNewBook;
 	private JButton btnUpdateBook;
 	private JButton btnDeleteBook;
-	
+	private JButton btnSellBook;
 	/////////////////////////////
 	
 	public JScrollPane getScrollPane() {
@@ -44,10 +43,10 @@ public class EmployeeGUI extends JDialog{
 		this.scrollPane = scrollPane;
 	}
 
-	public EmployeeGUI(java.awt.Frame parent, boolean modal, String title){
+	public ManagerGUI(java.awt.Frame parent, boolean modal, String title){
 		super(parent, modal);
 		setTitle(title);
-		setSize(1441, 600);
+		setSize(1381, 378);
 		
 		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
@@ -72,23 +71,33 @@ public class EmployeeGUI extends JDialog{
 	
 
 		scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(337, 82, 1056, 279);
+		scrollPane.setBounds(286, 42, 1056, 279);
 		panel.add(scrollPane);
 		
 		btnAddNewBook = new JButton("Add New Book");
 		btnAddNewBook.setFont(new Font("Linux Biolinum G", Font.BOLD, 17));
-		btnAddNewBook.setBounds(32, 84, 171, 31);
+		btnAddNewBook.setBounds(42, 42, 211, 31);
 		panel.add(btnAddNewBook);
 		
 		btnUpdateBook = new JButton("Update Book Info");
 		btnUpdateBook.setFont(new Font("Linux Biolinum G", Font.BOLD, 17));
-		btnUpdateBook.setBounds(32, 139, 171, 31);
+		btnUpdateBook.setBounds(42, 185, 211, 31);
 		panel.add(btnUpdateBook);
 		
 		btnDeleteBook = new JButton("Delete Book");
 		btnDeleteBook.setFont(new Font("Linux Biolinum G", Font.BOLD, 17));
-		btnDeleteBook.setBounds(32, 197, 171, 31);
+		btnDeleteBook.setBounds(42, 227, 211, 31);
 		panel.add(btnDeleteBook);
+		
+	    btnSellBook = new JButton("Sell Book!");
+		btnSellBook.setFont(new Font("Linux Biolinum G", Font.BOLD, 17));
+		btnSellBook.setBounds(42, 269, 211, 31);
+		panel.add(btnSellBook);
+		
+		lblInfo = new JLabel("<html>Select a book from<br/>tabel for operations below!</html>");
+		lblInfo.setFont(new Font("Linux Biolinum G", Font.BOLD, 17));
+		lblInfo.setBounds(42, 99, 223, 64);
+		panel.add(lblInfo);
 		
 		
 		
@@ -159,13 +168,21 @@ public class EmployeeGUI extends JDialog{
 	public void setBtnDeleteBook(JButton btnDeleteBook) {
 		this.btnDeleteBook = btnDeleteBook;
 	}
+    
+	public JButton getBtnSellBook() {
+		return btnSellBook;
+	}
+
+	public void setBtnSellBook(JButton btnSellBook) {
+		this.btnSellBook = btnSellBook;
+	}
 
 	public void addButtonActionListener(ActionListener listener) {
 	    btnAddNewBook.addActionListener(listener);
 	    btnUpdateBook.addActionListener(listener);
 	    btnDeleteBook.addActionListener(listener);
+	    btnSellBook.addActionListener(listener);
 	  }
-	
 }
 
 
