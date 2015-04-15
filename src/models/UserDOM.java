@@ -8,7 +8,7 @@ import org.w3c.dom.NodeList;
 
 public class UserDOM {
 
-	public void addUser(){
+	public void addUser(User newUser){
 		try{
 				Document d=DOMHelper.getDocument("src\\models\\users.xml");
 				
@@ -19,27 +19,27 @@ public class UserDOM {
 				
 				//Create SSN tag
 				Element SSN=d.createElement("SSN");
-				SSN.appendChild(d.createTextNode("1939999999"));
+				SSN.appendChild(d.createTextNode(newUser.getSSN()));
 				user.appendChild(SSN);
 				
 				//Create name tag
 				Element name=d.createElement("name"); 
-				name.appendChild(d.createTextNode("TEST_NAME"));
+				name.appendChild(d.createTextNode(newUser.getName()));
 				user.appendChild(name);
 				
 				//Create username tag
 				Element username=d.createElement("username"); 
-				username.appendChild(d.createTextNode("TEST_username"));
+				username.appendChild(d.createTextNode(newUser.getUsername()));
 				user.appendChild(username);
 				
 				//Create password tag
 				Element password=d.createElement("password"); 
-				password.appendChild(d.createTextNode("TEST_password"));
+				password.appendChild(d.createTextNode(newUser.getPassword()));
 				user.appendChild(password);
 				
 				//Create role tag
 				Element role=d.createElement("role");
-				role.appendChild(d.createTextNode("TEST_role")); 
+				role.appendChild(d.createTextNode(newUser.getRole())); 
 				user.appendChild(role);
 				
 				users.appendChild(user);
@@ -49,13 +49,18 @@ public class UserDOM {
 		}
 		}
 
-	public void removeUser(String SSN){
+	public void removeUser(User remUser){
 		try{
 				Document d = DOMHelper.getDocument("src\\models\\users.xml");
 				NodeList n1=d.getElementsByTagName("user"); 
 				for (int i = 0; i < n1.getLength(); i++) {
 					Element euser=(Element) n1.item(i);
-					if(euser.getElementsByTagName("SSN").item(0).getTextContent().equals(SSN)){
+					if(euser.getElementsByTagName("SSN").item(0).getTextContent().equals(remUser.getSSN())&&
+						euser.getElementsByTagName("name").item(0).getTextContent().equals(remUser.getName())&&
+						 euser.getElementsByTagName("username").item(0).getTextContent().equals(remUser.getUsername())&&
+						  euser.getElementsByTagName("password").item(0).getTextContent().equals(remUser.getPassword())&&
+							euser.getElementsByTagName("role").item(0).getTextContent().equals(remUser.getRole())
+							){
 						euser.getParentNode().removeChild(euser);
 					}
 				}
@@ -66,17 +71,24 @@ public class UserDOM {
 		}
 		}
 	
-	public void updateUser(String SSN, String name, String username, String password, String role){
+	public void updateUser(User oldUser, User newUser){
 		try{
+			//we leave role unchanged
 			Document d = DOMHelper.getDocument("src\\models\\users.xml");
 			NodeList n1=d.getElementsByTagName("user"); 
 			for (int i = 0; i < n1.getLength(); i++) {
 				Element euser=(Element) n1.item(i);
-				if(euser.getElementsByTagName("SSN").item(0).getTextContent().equals(SSN)){
-					euser.getElementsByTagName("name").item(0).setTextContent(name);
-					euser.getElementsByTagName("username").item(0).setTextContent(username);
-					euser.getElementsByTagName("password").item(0).setTextContent(password);
-					euser.getElementsByTagName("role").item(0).setTextContent(role);		 
+				if(euser.getElementsByTagName("SSN").item(0).getTextContent().equals(oldUser.getSSN())&&
+						euser.getElementsByTagName("name").item(0).getTextContent().equals(oldUser.getName())&&
+						 euser.getElementsByTagName("username").item(0).getTextContent().equals(oldUser.getUsername())&&
+						  euser.getElementsByTagName("password").item(0).getTextContent().equals(oldUser.getPassword())&&
+							euser.getElementsByTagName("role").item(0).getTextContent().equals(oldUser.getRole())
+							){
+					
+					euser.getElementsByTagName("name").item(0).setTextContent(newUser.getName());
+					euser.getElementsByTagName("username").item(0).setTextContent(newUser.getUsername());
+					euser.getElementsByTagName("password").item(0).setTextContent(newUser.getPassword());
+					euser.getElementsByTagName("role").item(0).setTextContent(oldUser.getRole());		 
 				}
 			}
 			//Write to file
