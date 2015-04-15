@@ -2,37 +2,44 @@
 <users>
 
 	
-	
-	
 	<user>
-		<SSN>1939999999</SSN>
-		<name>Ion</name>
-		<username>xx</username>
-		<password>xxx</password>
-		<role>boss</role>
+		<SSN>1930318245141</SSN>
+		<name>Ion Popescu</name>
+		<username>employee1</username>
+		<password>employee1</password>
+		<role>desk</role>
 	</user>
 	
 	<user>
-		<SSN>1939999999</SSN>
-		<name>Dumitru</name>
+		<SSN>1840524512654</SSN>
+		<name>Dumitru Vatavu</name>
+		<username>employee2</username>
+		<password>employee2</password>
+		<role>desk</role>
+	</user>
+	
+	<user>
+		<SSN>1900318245050</SSN>
+		<name>Vasile Cujba</name>
+		<username>manager1</username>
+		<password>manager1</password>
+		<role>manager</role>
+	</user>
+	
+	<user>
+		<SSN>1640303031542</SSN>
+		<name>Dumitru Vasilache</name>
+		<username>manager2</username>
+		<password>manager2</password>
+		<role>manager</role>
+	</user>
+	
+	<user>
+		<SSN>1630303031542</SSN>
+		<name>Ion dolanescu</name>
 		<username>user</username>
 		<password>pass</password>
-		<role>DJ</role>
+		<role>desk</role>
 	</user>
 	
-	<user>
-		<SSN>1939999999</SSN>
-		<name>Vasile</name>
-		<username>xx</username>
-		<password>xxx</password>
-		<role>clopotar</role>
-	</user>
-	
-	<user>
-		<SSN>1939999999</SSN>
-		<name>Dumitru</name>
-		<username>xx</username>
-		<password>xxx</password>
-		<role>DJ</role>
-	</user>
 </users>

@@ -13,7 +13,7 @@
 		<title>Little Humans</title>
 		<author>Brandom Stanton</author>
 		<genre>Photography</genre>
-		<quantity>12</quantity>
+		<quantity>0</quantity>
 		<price>19.75</price>
 	</book>
 	<book>
@@ -21,7 +21,7 @@
 		<title>New York Through the Lens</title>
 		<author>Vivienne Gucwa </author>
 		<genre>Photography</genre>
-		<quantity>50</quantity>
+		<quantity>0</quantity>
 		<price>52.5</price>
 	</book>
 	
@@ -39,7 +39,7 @@
 		<title>Introducing the Ancient Greeks</title>
 		<author>Edith Hall </author>
 		<genre>History</genre>
-		<quantity>100</quantity>
+		<quantity>0</quantity>
 		<price>65.5</price>
 	</book>
 	<book>
@@ -76,6 +76,7 @@
 <quantity>3</quantity>
 <price>29.5</price>
 </book>
+
 
 
 

@@ -111,7 +111,7 @@ public class BookDOM {
 			System.out.println(e.getMessage());
 	}
 	}
-
+	
 	public ArrayList<Book> getAllBooks(){
 		ArrayList<Book> allBooks = new ArrayList<Book>();
 		
@@ -134,6 +134,38 @@ public class BookDOM {
 	}
 		//System.out.println(allBooks.toString());
 		return allBooks;
+	}
+	
+	
+	
+	public ArrayList<Book> searchBookBy(String searchedWord, String field, ArrayList<Book> allBooks){
+		ArrayList<Book> searchResults = new ArrayList<Book>();
+		int index = 0; 
+		while (index < allBooks.size()){
+			Book aBook = allBooks.get(index); 
+			switch (field) {
+			case "genre": if (aBook.getGenre().contains(searchedWord)){
+								searchResults.add(aBook);
+							}
+				break;
+
+			case "title": if (aBook.getTitle().contains(searchedWord)){
+								searchResults.add(aBook);
+							}
+				break;	
+				
+			case "author":if (aBook.getAuthor().contains(searchedWord)){
+								searchResults.add(aBook);
+							}
+				break;	
+				
+			default:
+				break;
+			}
+			index++;
+		}
+		
+	return searchResults;
 	}
 	
 
