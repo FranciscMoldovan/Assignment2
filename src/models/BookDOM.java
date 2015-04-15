@@ -6,7 +6,7 @@ import org.w3c.dom.*;
 
 
 public class BookDOM {
-	public void addBook(){
+	public void addBook(Book newBook){
 		try{
 				Document d=DOMHelper.getDocument("src\\models\\books.xml");
 				Element books=d.getDocumentElement();
@@ -14,27 +14,27 @@ public class BookDOM {
 				Element book=d.createElement("book"); 
 				//Create ISBN tag
 				Element ISBN=d.createElement("ISBN");
-				ISBN.appendChild(d.createTextNode("4444444444"));
+				ISBN.appendChild(d.createTextNode(newBook.getISBN()));
 				book.appendChild(ISBN);
 				//Create title tag
 				Element title=d.createElement("title"); 
-				title.appendChild(d.createTextNode("TEST_TITLE"));
+				title.appendChild(d.createTextNode(newBook.getTitle()));
 				book.appendChild(title);
 				//Create author tag
 				Element author=d.createElement("author"); 
-				author.appendChild(d.createTextNode("TEST_AUTHOR"));
+				author.appendChild(d.createTextNode(newBook.getAuthor()));
 				book.appendChild(author);
 				//Create genre tag
 				Element genre=d.createElement("genre"); 
-				genre.appendChild(d.createTextNode("TEST_AUTHOR"));
+				genre.appendChild(d.createTextNode(newBook.getGenre()));
 				book.appendChild(genre);
 				//Create quantity tag
 				Element quantity=d.createElement("quantity"); 
-				quantity.appendChild(d.createTextNode("99999"));
+				quantity.appendChild(d.createTextNode(String.valueOf(newBook.getQuantity())));
 				book.appendChild(quantity);
 				//Create price tag
 				Element price=d.createElement("price"); 
-				price.appendChild(d.createTextNode("25.5"));
+				price.appendChild(d.createTextNode(String.valueOf(newBook.getPrice())));
 				book.appendChild(price);
 				books.appendChild(book);
 				DOMHelper.saveXMLContent(d,"src\\models\\books.xml");
@@ -43,13 +43,25 @@ public class BookDOM {
 		}
 		}
 
-	public void removeBook(String ISBN){
+	public void removeBook(Book aBook){
 		try{
+				String ISBN = aBook.getISBN();
+				String title=aBook.getTitle();
+				String author=aBook.getAuthor();
+				String genre=aBook.getGenre();
+				String quantity=String.valueOf(aBook.getQuantity());
+				
+			
 				Document d = DOMHelper.getDocument("src\\models\\books.xml");
 				NodeList n1=d.getElementsByTagName("book"); 
 				for (int i = 0; i < n1.getLength(); i++) {
 					Element ebook=(Element) n1.item(i);
-					if(ebook.getElementsByTagName("ISBN").item(0).getTextContent().equals(ISBN)){
+					if(ebook.getElementsByTagName("ISBN").item(0).getTextContent().equals(ISBN) && 
+						ebook.getElementsByTagName("title").item(0).getTextContent().equals(title) &&	
+						 ebook.getElementsByTagName("author").item(0).getTextContent().equals(author) &&	
+						  ebook.getElementsByTagName("genre").item(0).getTextContent().equals(genre) &&	
+						   ebook.getElementsByTagName("quantity").item(0).getTextContent().equals(quantity) 	
+							){
 						ebook.getParentNode().removeChild(ebook);
 					}
 				}
@@ -60,19 +72,37 @@ public class BookDOM {
 		}
 		}
 	
-	public void updateBook(String ISBN, String title, String author, String genre, int quantity, double price){
+	public void updateBook(Book oldBook, Book newBook){
 		try{
+			String oldISBN = oldBook.getISBN();
+			String oldTitle= oldBook.getTitle();
+			String oldAuthor=oldBook.getAuthor();
+			String oldGenre=oldBook.getGenre();
+				String oldQuantity=String.valueOf(oldBook.getQuantity());
+			
+			
+			//String updISBN=newBook.getISBN();
+			String updTitle= newBook.getTitle();
+			String updAuthor=newBook.getAuthor();
+			String updGenre=newBook.getGenre();
+			   String updQuantity=String.valueOf(newBook.getQuantity());
+			   String updPrice=String.valueOf(newBook.getPrice());
+			
 			Document d = DOMHelper.getDocument("src\\models\\books.xml");
 			NodeList n1=d.getElementsByTagName("book"); 
 			for (int i = 0; i < n1.getLength(); i++) {
 				Element ebook=(Element) n1.item(i);
-				if(ebook.getElementsByTagName("ISBN").item(0).getTextContent().equals(ISBN)){
-					ebook.getElementsByTagName("title").item(0).setTextContent(title);
-					ebook.getElementsByTagName("author").item(0).setTextContent(author);
-					ebook.getElementsByTagName("genre").item(0).setTextContent(genre);
-					 
-					ebook.getElementsByTagName("quantity").item(0).setTextContent(String.valueOf(quantity));	
-					ebook.getElementsByTagName("price").item(0).setTextContent(String.valueOf(price));		 
+				if(ebook.getElementsByTagName("ISBN").item(0).getTextContent().equals(oldISBN)&&
+					ebook.getElementsByTagName("title").item(0).getTextContent().equals(oldTitle)&&
+					 ebook.getElementsByTagName("author").item(0).getTextContent().equals(oldAuthor)&&
+					  ebook.getElementsByTagName("genre").item(0).getTextContent().equals(oldGenre)&&
+					   ebook.getElementsByTagName("quantity").item(0).getTextContent().equals(oldQuantity)
+						){
+					ebook.getElementsByTagName("title").item(0).setTextContent(updTitle);
+					ebook.getElementsByTagName("author").item(0).setTextContent(updAuthor);
+					ebook.getElementsByTagName("genre").item(0).setTextContent(updGenre);
+					ebook.getElementsByTagName("quantity").item(0).setTextContent(String.valueOf(updQuantity));	
+					ebook.getElementsByTagName("price").item(0).setTextContent(String.valueOf(updPrice));		 
 				}
 			}
 			//Write to file
@@ -102,7 +132,7 @@ public class BookDOM {
 		}catch (Exception e){
 			System.out.println(e.getMessage());
 	}
-		System.out.println(allBooks.toString());
+		//System.out.println(allBooks.toString());
 		return allBooks;
 	}
 	

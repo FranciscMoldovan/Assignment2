@@ -15,6 +15,8 @@ import javax.swing.table.TableColumn;
 
 
 
+
+
 import models.Book;
 import models.BookDOM;
 import models.User;
@@ -41,7 +43,6 @@ public class Controller {
 		        	if (checkLogIn){
 		        		logInWindow.setVisible(false);
 		        		employeeWindow.setVisible(true);
-		        		BookDOM bd = new BookDOM();
 		        		employeeWindow.setTitle("DRACU!");
 		        		
 		        		fillMyTable();
@@ -59,8 +60,8 @@ public class Controller {
 	    		new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						if (evt.getSource()==employeeWindow.getBtnAddNewBook())
-						{
-							
+						{	
+							try{
 							   JTextField fieldISBN = new JTextField();
 							   JTextField fieldTitle = new JTextField();
 							   JTextField fieldAuthor = new JTextField();
@@ -79,8 +80,8 @@ public class Controller {
 								{ 
 									if (fieldISBN.getText().trim().length()>0 && fieldTitle.getText().trim().length()>0 && fieldAuthor.getText().trim().length()>0 &&
 											fieldGenre.getText().trim().length()>0 && fieldQuantity.getText().trim().length()>0 && fieldPrice.getText().trim().length()>0){
-										
-											
+									if (checkISBN(fieldISBN.getText()))
+									{
 										   String newISBN = fieldISBN.getText();
 										   String newTitle = fieldTitle.getText();
 										   String newAuthor = fieldAuthor.getText();
@@ -88,21 +89,111 @@ public class Controller {
 										   int newQuantity = Integer.valueOf(fieldQuantity.getText());
 										   double newPrice = Double.valueOf(fieldPrice.getText());
 										   
-										
 										BookDOM bd = new BookDOM();
 										Book newBook = new Book(newISBN,newTitle,newAuthor,newGenre,newQuantity,newPrice);
 										bd.addBook(newBook);
+											updateTable();
+											//default title and icon
+											JOptionPane.showMessageDialog(employeeWindow,"Successfully added book:"+newTitle+" by "+newAuthor+"!");
+									} else{
+										JOptionPane.showMessageDialog(employeeWindow,"ISBN Taken!","ISBN TAKEN!",JOptionPane.ERROR_MESSAGE);
+									}
+									}
+									else{
+										//custom title, error icon
+										JOptionPane.showMessageDialog(employeeWindow,"Please leave no field empty!","ERROR!",JOptionPane.ERROR_MESSAGE);
 									}
 								}
+							}catch (NumberFormatException e) {
+								JOptionPane.showMessageDialog(employeeWindow,"Please input integer quantity and double price!","PLEASE INPUT NUMERS!",JOptionPane.ERROR_MESSAGE);
+							}
 						}
+						
 						
 						if (evt.getSource()==employeeWindow.getBtnUpdateBook())
 						{
-							System.out.println("UPDATE_BTN");
+							if (employeeWindow.getTable().getSelectedRow()!=-1)
+							{
+							try{
+								  
+								   JTextField fieldTitle = new JTextField((String)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),1));
+								   JTextField fieldAuthor = new JTextField((String)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),2));
+								   JTextField fieldGenre= new JTextField((String)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),3));
+								   JTextField fieldQuantity = new JTextField(String.valueOf(employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),4)));
+								   JTextField fieldPrice = new JTextField(String.valueOf(employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),5)));
+								   
+								  
+								 Object[] message = {"updated Book Title:", fieldTitle, "updated Book Author:", fieldAuthor,
+										 			"updated Book Genre:", fieldGenre, "updated Book Quantity:", fieldQuantity, "updated Book Price", fieldPrice};
+
+									Object[] options = { "UPDATE!", "Cancel" };
+									int n = JOptionPane.showOptionDialog(new JFrame(), message,"Update Book Info", JOptionPane.YES_NO_OPTION,
+											JOptionPane.QUESTION_MESSAGE, null, options,options[1]);
+									if (n == JOptionPane.OK_OPTION) 
+									{ 
+										if (fieldTitle.getText().trim().length()>0 && fieldAuthor.getText().trim().length()>0 &&
+												fieldGenre.getText().trim().length()>0 && fieldQuantity.getText().trim().length()>0 && fieldPrice.getText().trim().length()>0){
+											
+											 
+											   String updTitle = fieldTitle.getText();
+											   String updAuthor = fieldAuthor.getText();
+											   String updGenre = fieldGenre.getText();
+											   int updQuantity = Integer.valueOf(fieldQuantity.getText());
+											   double updPrice = Double.valueOf(fieldPrice.getText());
+										
+														BookDOM bd = new BookDOM();
+															Book newBook = new Book((String)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),0),updTitle,updAuthor,updGenre,updQuantity,updPrice);
+															Book oldBook = new Book((String)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),0),
+																					(String)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),1),
+																					(String)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),2), 
+																					(String)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),3), 
+																					((Integer)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),4)),
+																					((Double)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),5)));
+															bd.updateBook(oldBook, newBook);
+															updateTable();
+															//default title and icon
+															JOptionPane.showMessageDialog(employeeWindow,"Successfully updated book:"+updTitle+" by "+updAuthor+"!");
+									
+										}
+									   
+									      else{
+														//custom title, error icon
+														JOptionPane.showMessageDialog(employeeWindow,"Please leave no field empty!","ERROR!",JOptionPane.ERROR_MESSAGE);
+													}
+									}
+									
+								}catch (NumberFormatException e) {
+									JOptionPane.showMessageDialog(employeeWindow,"Please input integer quantity and double price!","PLEASE INPUT NUMERS!",JOptionPane.ERROR_MESSAGE);
+								}
+							}
 						}
+						
+						
 						if (evt.getSource()==employeeWindow.getBtnDeleteBook())
 						{
-							System.out.println("DELETE_BTN");
+				
+							if(employeeWindow.getTable().getSelectedRow()!=-1){
+								   String toDelISBN = ((String)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),0));
+								   String toDelTitle = ((String)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),1));
+								   String toDelAuthor = ((String)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),2));
+								   String toDelGenre= ((String)employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),3));
+								   int toDelQuantity = ((Integer)(employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),4)));
+								   double toDelPrice = ((Double)(employeeWindow.getTable().getValueAt(employeeWindow.getTable().getSelectedRow(),5)));
+								   
+								   Book aBook = new Book(toDelISBN, toDelTitle, toDelAuthor, toDelGenre, toDelQuantity, toDelPrice);
+								   BookDOM bd = new BookDOM();
+								   
+									int n = JOptionPane.showConfirmDialog(employeeWindow,
+										    "Are you sure you want to remove Book: "+aBook.toString()+" ??",
+										    "Please confirm deletion!",
+										    JOptionPane.YES_NO_OPTION);	
+									if (n==JOptionPane.YES_OPTION)
+									{
+									   bd.removeBook(aBook);
+									   updateTable();
+									   
+									}
+							}
 						}
 					}
 				});
@@ -117,7 +208,7 @@ public class Controller {
 			//////////////////////////////////////////////////////
 			DefaultTableModel dtm=employeeWindow.getdTableModel();
 			//////////////////////////////////////////////////////
-			int[] columnsWidth = { 190, 118, 150, 300, 130};
+			int[] columnsWidth = { 100, 400, 200, 150, 50,80};
 			int ii = 0;
 			for (int width : columnsWidth) {
 				TableColumn column = employeeWindow.getTable().getColumnModel().getColumn(ii++);
@@ -173,6 +264,23 @@ public class Controller {
 		  	}
 		  	System.out.println(logInOK);
 	  return logInOK;
+	  }
+
+	  public boolean checkISBN(String ISBN){
+		  boolean okISBN = true;
+		  
+		  BookDOM bd = new BookDOM();
+		  ArrayList<Book> checkMyBooks=bd.getAllBooks();
+		  int iter=0;
+			  while(iter<checkMyBooks.size()){
+				  Book aBook = checkMyBooks.get(iter);
+				 if (ISBN.equals(aBook.getISBN())){
+					 okISBN=false;
+					 break;
+				 }
+				 iter++;
+			  }
+		  return okISBN;
 	  }
 	  
 	  public static void main(String[] args) { 
