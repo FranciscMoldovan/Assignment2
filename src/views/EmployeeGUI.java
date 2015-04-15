@@ -39,6 +39,7 @@ public class EmployeeGUI extends JDialog{
 	private JTextField fldSearch;
 	private JButton btnSearch;
 	private JButton btnSignOut;
+	
 	/////////////////////////////
 	
 	////////RADIO BUTTONS//////
@@ -154,6 +155,8 @@ public class EmployeeGUI extends JDialog{
 		btnSignOut.setFont(new Font("Linux Biolinum G", Font.BOLD, 17));
 		btnSignOut.setBounds(24, 11, 99, 44);
 		panel.add(btnSignOut);
+		
+		
 		
 		
 		

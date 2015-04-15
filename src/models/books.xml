@@ -5,7 +5,7 @@
 		<title>Humans of New York</title>
 		<author>Brandom Stanton</author>
 		<genre>Photography</genre>
-		<quantity>0</quantity>
+		<quantity>23</quantity>
 		<price>25.5</price>
 	</book>
 	<book>
@@ -13,7 +13,7 @@
 		<title>Little Humans</title>
 		<author>Brandom Stanton</author>
 		<genre>Photography</genre>
-		<quantity>0</quantity>
+		<quantity>23</quantity>
 		<price>19.75</price>
 	</book>
 	<book>
@@ -21,17 +21,17 @@
 		<title>New York Through the Lens</title>
 		<author>Vivienne Gucwa </author>
 		<genre>Photography</genre>
-		<quantity>0</quantity>
+		<quantity>23</quantity>
 		<price>52.5</price>
 	</book>
-	
-	
+
+
 	<book>
 		<ISBN>0241146534</ISBN>
 		<title>Landmarks</title>
 		<author>Robert Macfarlane </author>
 		<genre>History</genre>
-		<quantity>0</quantity>
+		<quantity>23</quantity>
 		<price>60.5</price>
 	</book>
 	<book>
@@ -39,7 +39,7 @@
 		<title>Introducing the Ancient Greeks</title>
 		<author>Edith Hall </author>
 		<genre>History</genre>
-		<quantity>0</quantity>
+		<quantity>34</quantity>
 		<price>65.5</price>
 	</book>
 	<book>
@@ -47,35 +47,36 @@
 		<title>The Churchill Factor: How One Man Made History</title>
 		<author>Boris Johnson </author>
 		<genre>History</genre>
-		<quantity>0</quantity>
+		<quantity>222</quantity>
 		<price>120.75</price>
 	</book>
-	
-	
-<book>
-<ISBN>1476791619</ISBN>
-<title>A Work in Progress</title>
-<author> Connor Franta</author>
-<genre>Humour</genre>
-<quantity>0</quantity>
-<price>29.95</price>
-</book>
-<book>
-<ISBN>0330492284</ISBN>
-<title>So You've Been Publicly Shamed</title>
-<author>Jon Ronson</author>
-<genre>Humour</genre>
-<quantity>2</quantity>
-<price>28.75</price>
-</book>
-<book>
-<ISBN>0330492276</ISBN>
-<title>The Psychopath Test</title>
-<author>Jon Ronson</author>
-<genre>Humour</genre>
-<quantity>3</quantity>
-<price>29.5</price>
-</book>
+
+
+	<book>
+		<ISBN>1476791619</ISBN>
+		<title>A Work in Progress</title>
+		<author> Connor Franta</author>
+		<genre>Humour</genre>
+		<quantity>54</quantity>
+		<price>29.95</price>
+	</book>
+	<book>
+		<ISBN>0330492284</ISBN>
+		<title>So You've Been Publicly Shamed</title>
+		<author>Jon Ronson</author>
+		<genre>Humour</genre>
+		<quantity>45</quantity>
+		<price>28.75</price>
+	</book>
+	<book>
+		<ISBN>0330492276</ISBN>
+		<title>The Psychopath Test</title>
+		<author>Jon Ronson</author>
+		<genre>Humour</genre>
+		<quantity>3</quantity>
+		<price>29.5</price>
+	</book>
+
 
 
 

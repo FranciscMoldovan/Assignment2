@@ -39,7 +39,16 @@
 		<name>Ion dolanescu</name>
 		<username>user</username>
 		<password>pass</password>
-		<role>desk</role>
+		<role>manager</role>
 	</user>
 	
+<user>
+<SSN>1930548245151</SSN>
+<name>Ionel Patrascu</name>
+<username>ionel</username>
+<password>ionel</password>
+<role>desk</role>
+</user>
+
+
 </users>
