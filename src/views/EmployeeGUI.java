@@ -38,7 +38,7 @@ public class EmployeeGUI extends JDialog{
 	private JButton btnSellBook;
 	private JTextField fldSearch;
 	private JButton btnSearch;
-	
+	private JButton btnSignOut;
 	/////////////////////////////
 	
 	////////RADIO BUTTONS//////
@@ -46,7 +46,6 @@ public class EmployeeGUI extends JDialog{
 	private JRadioButton radioTitle;
 	private JRadioButton radioAuthor;
 	private JButton btnSeeAll;
-	private JButton btnSignOut;
 	//////////////////////////
 	
 

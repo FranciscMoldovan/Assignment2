@@ -13,6 +13,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import java.awt.event.ActionEvent;
 
 public class ManagerGUI extends JDialog{
 
@@ -32,7 +33,7 @@ public class ManagerGUI extends JDialog{
 	private JButton btnAddNewBook;
 	private JButton btnUpdateBook;
 	private JButton btnDeleteBook;
-	private JButton btnSellBook;
+	private JButton btnSignOut;
 	/////////////////////////////
 	
 	public JScrollPane getScrollPane() {
@@ -76,28 +77,33 @@ public class ManagerGUI extends JDialog{
 		
 		btnAddNewBook = new JButton("Add New Book");
 		btnAddNewBook.setFont(new Font("Linux Biolinum G", Font.BOLD, 17));
-		btnAddNewBook.setBounds(42, 42, 211, 31);
+		btnAddNewBook.setBounds(42, 108, 211, 31);
 		panel.add(btnAddNewBook);
 		
 		btnUpdateBook = new JButton("Update Book Info");
 		btnUpdateBook.setFont(new Font("Linux Biolinum G", Font.BOLD, 17));
-		btnUpdateBook.setBounds(42, 185, 211, 31);
+		btnUpdateBook.setBounds(42, 206, 211, 31);
 		panel.add(btnUpdateBook);
 		
 		btnDeleteBook = new JButton("Delete Book");
 		btnDeleteBook.setFont(new Font("Linux Biolinum G", Font.BOLD, 17));
-		btnDeleteBook.setBounds(42, 227, 211, 31);
+		btnDeleteBook.setBounds(42, 248, 211, 31);
 		panel.add(btnDeleteBook);
 		
-	    btnSellBook = new JButton("Sell Book!");
-		btnSellBook.setFont(new Font("Linux Biolinum G", Font.BOLD, 17));
-		btnSellBook.setBounds(42, 269, 211, 31);
-		panel.add(btnSellBook);
 		
 		lblInfo = new JLabel("<html>Select a book from<br/>tabel for operations below!</html>");
 		lblInfo.setFont(new Font("Linux Biolinum G", Font.BOLD, 17));
-		lblInfo.setBounds(42, 99, 223, 64);
+		lblInfo.setBounds(41, 131, 223, 64);
 		panel.add(lblInfo);
+		
+		btnSignOut = new JButton("Sign Out");
+		btnSignOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnSignOut.setFont(new Font("Linux Biolinum G", Font.BOLD, 17));
+		btnSignOut.setBounds(42, 28, 108, 55);
+		panel.add(btnSignOut);
 		
 		
 		
@@ -168,20 +174,21 @@ public class ManagerGUI extends JDialog{
 	public void setBtnDeleteBook(JButton btnDeleteBook) {
 		this.btnDeleteBook = btnDeleteBook;
 	}
-    
-	public JButton getBtnSellBook() {
-		return btnSellBook;
+
+
+	public JButton getBtnSignOut() {
+		return btnSignOut;
 	}
 
-	public void setBtnSellBook(JButton btnSellBook) {
-		this.btnSellBook = btnSellBook;
+	public void setBtnSignOut(JButton btnSignOut) {
+		this.btnSignOut = btnSignOut;
 	}
 
 	public void addButtonActionListener(ActionListener listener) {
 	    btnAddNewBook.addActionListener(listener);
 	    btnUpdateBook.addActionListener(listener);
 	    btnDeleteBook.addActionListener(listener);
-	    btnSellBook.addActionListener(listener);
+	    btnSignOut.addActionListener(listener);
 	  }
 }
 

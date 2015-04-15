@@ -3,25 +3,13 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-
-
-
-
-
-
-
-
-
-
 import models.Book;
 import models.BookDOM;
 import models.User;
@@ -53,7 +41,9 @@ public class Controller {
 		        		logInWindow.setVisible(false);
 		        		managerWindow.setVisible(true);
 		        		managerWindow.setTitle("MANAGER PANEL!");
-		        		fillManagerTable();		        	
+		        		BookDOM bd = new BookDOM();
+		        		updateManagerTable();
+		    
 		        	}
 		        	
 		        	if (checkLogIn.equals("OKdesk")){
@@ -61,7 +51,7 @@ public class Controller {
 		        		employeeWindow.setVisible(true);
 		        		employeeWindow.setTitle("EMPLOYEE PANEL!");
 		        		BookDOM bd = new BookDOM();
-		        		fillEmployeeTable(bd.getAllBooks());
+		        		updateEmployeeTable(bd.getAllBooks());
 		        	
 		        	}
 		        	
@@ -212,63 +202,12 @@ public class Controller {
 									}
 							}
 						}
+											
 						
-						
-						if (evt.getSource()==managerWindow.getBtnSellBook())
-						{
-							try{
-							if(managerWindow.getTable().getSelectedRow()!=-1){
-								String toSellISBN = ((String)managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),0));
-								   String toSellTitle = ((String)managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),1));
-								   String toSellAuthor = ((String)managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),2));
-								   String toSellGenre= ((String)managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),3));
-								   int toSellQuantity = ((Integer)(managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),4)));
-								   double toSellPrice = ((Double)(managerWindow.getTable().getValueAt(managerWindow.getTable().getSelectedRow(),5)));
-								   
-								   Book aBook = new Book(toSellISBN, toSellTitle, toSellAuthor, toSellGenre, toSellQuantity, toSellPrice);
-								   
-								     JTextField numerToSell=new JTextField();
-									 Object[] message = {"Number of books to sell:",numerToSell};
-
-								Object[] options = { "SELL!", "Cancel" };
-								int n = JOptionPane.showOptionDialog(new JFrame(), message,"Sell Book", JOptionPane.YES_NO_OPTION,
-										JOptionPane.QUESTION_MESSAGE, null, options,options[1]);
-								if (n == JOptionPane.OK_OPTION)
-								{
-									if(aBook.getQuantity()!=0){
-										int number = Integer.valueOf(numerToSell.getText());
-										BookDOM bd = new BookDOM();
-										if (number<=aBook.getQuantity())
-										{//eough books to sell at once
-											Book newBook = new Book(aBook.getISBN(), aBook.getTitle(), aBook.getAuthor(), 
-													aBook.getGenre(), aBook.getQuantity(), aBook.getPrice());
-											newBook.setQuantity(newBook.getQuantity()-number);
-										    	bd.updateBook(aBook, newBook);
-										    	updateManagerTable();
-										    	JOptionPane.showMessageDialog(managerWindow,"Successfully Sold "+number+" pieces of book: "+aBook.getTitle()+" by "+
-										    	aBook.getAuthor()+" Total SUM: "+number*aBook.getPrice());
-										    	
-										}else
-										{//couldn't sell enough books
-											int actuallySold = aBook.getQuantity();
-											Book newBook = new Book(aBook.getISBN(), aBook.getTitle(), aBook.getAuthor(), 
-													aBook.getGenre(), aBook.getQuantity(), aBook.getPrice());
-											newBook.setQuantity(0);
-										    	bd.updateBook(aBook, newBook);
-										    	updateManagerTable();
-										    	JOptionPane.showMessageDialog(managerWindow,"Only "+actuallySold+" books out of "+number+" sold!! TOTAL SUM:"+aBook.getPrice()*actuallySold,"NOT ENOUGH BOOKS SOLD!",JOptionPane.ERROR_MESSAGE);
-										}
-									}else{
-										JOptionPane.showMessageDialog(managerWindow,"Sorry, book is Completelely OUT OF STOCK!","BOOKS IS OUT OF STOCK!",JOptionPane.ERROR_MESSAGE);
-											}
-								}
-							}
+						if (evt.getSource()==managerWindow.getBtnSignOut()){
+							managerWindow.setVisible(false);
+							logInWindow.setVisible(true);
 						}
-							catch(NumberFormatException e){
-								JOptionPane.showMessageDialog(managerWindow,"Please type number, not letters!","INPUT ERROR!",JOptionPane.ERROR_MESSAGE);
-								}
-					}
-//						
 						
 					}
 				});
